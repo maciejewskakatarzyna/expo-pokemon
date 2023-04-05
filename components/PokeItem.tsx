@@ -19,7 +19,7 @@ const PokeItem = ({name, imgURL, types}: PokeProps) => {
             <View style={styles.noImage} />
             )    
         }
-            <Text style={styles.types}><Text>Types: {types.map(type => `${type}, `)} </Text></Text>
+            <Text style={styles.types}>Types: {types.join(', ')}</Text>
         </View>
     )
 }
