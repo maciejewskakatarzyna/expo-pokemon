@@ -8,10 +8,10 @@ import { Text as DefaultText, useColorScheme, View as DefaultView } from 'react-
 import Colors from '../constants/Colors';
 
 export function useThemeColor(
-  props: { light?: string; dark?: string },
-  colorName: keyof typeof Colors.light & keyof typeof Colors.dark
+  props: { default?: string; light?: string; dark?: string },
+  colorName: keyof typeof Colors.default & keyof typeof Colors.light & keyof typeof Colors.dark
 ) {
-  const theme = useColorScheme() ?? 'light';
+  const theme = useColorScheme() ?? 'default';
   const colorFromProps = props[theme];
 
   if (colorFromProps) {
@@ -22,6 +22,7 @@ export function useThemeColor(
 }
 
 type ThemeProps = {
+  defaultColor?: string;
   lightColor?: string;
   darkColor?: string;
 };
