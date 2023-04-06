@@ -1,8 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, Image } from "react-native";
-import { View } from "./Themed";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { View } from "../components/Themed";
+import { useRouter, useSearchParams } from "expo-router";
 
 type PokeProps = {
   id: string;
@@ -11,24 +12,13 @@ type PokeProps = {
   types: string[];
 };
 
-const PokeItem = ({ id, name, imgURL, types }: PokeProps) => {
-  const navigation = useNavigation();
+const PokeItem = ({}) => {
+  const router = useSearchParams();
 
-  const handlePress = () => {
-    navigation.navigate("pokeitem", { id, name, imgURL, types });
-  };
-
+  console.log(router);
   return (
-    <View style={styles.pokeItem}>
-      <TouchableOpacity onPress={handlePress} style={styles.pokelink}>
-        <Text style={styles.name}>{name}</Text>
-        {imgURL ? (
-          <Image style={styles.image} source={{ uri: imgURL }} />
-        ) : (
-          <View style={styles.noImage} />
-        )}
-        <Text style={styles.types}>Types: {types.join(", ")}</Text>
-      </TouchableOpacity>
+    <View>
+      <Text>Item</Text>
     </View>
   );
 };
@@ -39,15 +29,13 @@ const styles = StyleSheet.create({
   pokeItem: {
     backgroundColor: "rgb(229, 231, 235)",
     flex: 1,
-    borderColor: "red",
-    borderWidth: 1,
+    minWidth: 150,
+    maxWidth: 150,
     height: 200,
     alignItems: "center",
+    padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
-  },
-  pokelink: {
-    padding: 20,
   },
   name: {
     fontSize: 18,
