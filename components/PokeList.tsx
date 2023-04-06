@@ -2,14 +2,14 @@ import React from "react";
 import { StyleSheet, FlatList, SafeAreaView, StatusBar } from "react-native";
 import PokeItem from "./PokeItem";
 
-type ItemData = {
+export type PokeProps = {
   id: string;
   name: string;
   imgURL?: string;
   types: string[];
 };
 
-const DATA: ItemData[] = [
+const DATA: PokeProps[] = [
   {
     id: "1",
     name: "First",
@@ -66,14 +66,7 @@ const PokeList = () => {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={DATA}
-        renderItem={({ item }) => (
-          <PokeItem
-            id={item.id}
-            name={item.name}
-            imgURL={item.imgURL}
-            types={item.types}
-          />
-        )}
+        renderItem={({ item }) => <PokeItem data={item} />}
         keyExtractor={(item) => item.id}
         numColumns={numColumns}
         horizontal={false}
@@ -86,6 +79,7 @@ export default PokeList;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "rgb(249, 250, 251)",
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
     width: "100%",
