@@ -3,19 +3,15 @@ import { StyleSheet, Text, Image } from "react-native";
 import { View } from "./Themed";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { PokeProps } from "./PokeList";
 
-type PokeProps = {
-  id: string;
-  name: string;
-  imgURL?: string;
-  types: string[];
-};
-
-const PokeItem = ({ id, name, imgURL, types }: PokeProps) => {
+const PokeItem = ({ data }: PokeProps) => {
   const navigation = useNavigation();
+  console.log(data);
+  const { id, name, imgURL, types } = data;
 
   const handlePress = () => {
-    navigation.navigate("pokeitem", { id, name, imgURL, types });
+    navigation.navigate("pokeitem", { name, imgURL, types });
   };
 
   return (
@@ -38,16 +34,17 @@ export default PokeItem;
 const styles = StyleSheet.create({
   pokeItem: {
     backgroundColor: "rgb(229, 231, 235)",
-    flex: 1,
-    borderColor: "red",
-    borderWidth: 1,
+    flex: 1 / 2,
+    // borderColor: "red",
+    // borderWidth: 1,
     height: 200,
-    alignItems: "center",
+    width: "100%",
     marginVertical: 8,
     marginHorizontal: 16,
   },
   pokelink: {
     padding: 20,
+    alignItems: "center",
   },
   name: {
     fontSize: 18,

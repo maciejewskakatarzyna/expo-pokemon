@@ -26,7 +26,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="poke"
         options={{
-          title: "Tab One",
+          title: "Pokemons",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
