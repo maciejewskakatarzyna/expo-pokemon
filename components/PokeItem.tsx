@@ -7,11 +7,15 @@ import { PokeProps } from "./PokeList";
 
 const PokeItem = ({ data }: PokeProps) => {
   const navigation = useNavigation();
-  console.log(data);
-  const { id, name, imgURL, types } = data;
+  const { id, name, imgURL, types, evolvesFrom } = data;
 
   const handlePress = () => {
-    navigation.navigate("pokeitem", { name, imgURL, types });
+    navigation.navigate("pokeitem", {
+      name,
+      imgURL,
+      types,
+      evolvesFrom,
+    });
   };
 
   return (

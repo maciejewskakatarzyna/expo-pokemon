@@ -4,7 +4,7 @@ import { View } from "../components/Themed";
 import { useSearchParams } from "expo-router";
 
 const PokeItem = () => {
-  const { name, imgURL, types } = useSearchParams();
+  const { name, imgURL, types, evolvesFrom } = useSearchParams();
 
   return (
     <View style={styles.pokeItem}>
@@ -14,7 +14,17 @@ const PokeItem = () => {
       ) : (
         <View style={styles.noImage} />
       )}
-      {types && <Text style={styles.types}>Types: {types.join(", ")}</Text>}
+      <View style={styles.description}>
+        {types && (
+          <Text style={styles.descriptionText}>
+            <Text style={styles.bold}>Types: </Text> {types.join(", ")}
+          </Text>
+        )}
+        <Text style={styles.descriptionText}>
+          <Text style={styles.bold}>Evolves from: </Text>
+          {evolvesFrom}
+        </Text>
+      </View>
     </View>
   );
 };
@@ -44,8 +54,18 @@ const styles = StyleSheet.create({
     height: 250,
     backgroundColor: "#d7dae0",
   },
-  types: {
-    fontSize: 18,
+  description: {
+    backgroundColor: "rgb(249, 250, 251)",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    gap: 30,
     marginTop: 30,
+  },
+  descriptionText: {
+    fontSize: 18,
+  },
+  bold: {
+    fontWeight: "bold",
   },
 });
